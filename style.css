@@ -1,0 +1,71 @@
+/* Reset default margin and padding for body element */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set font and background color for header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Style header h1 and nav elements */
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Style main content section */
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+p {
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+
+/* Style clients list */
+.clients-list {
+    list-style-type: disc;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.clients-list li {
+    margin-bottom: 5px;
+}
+
+/* Style footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}

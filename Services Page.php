@@ -36,12 +36,16 @@ include_once 'functions.php'; // File containing functions for retrieving data f
                 // Retrieve services data from the database
                 $services = getServices();
                 
-                // Loop through each service and display its information
-                foreach ($services as $service) {
-                    echo '<li>';
-                    echo '<h4>' . $service['service_name'] . '</h4>';
-                    echo '<p>Description: ' . $service['service_description'] . '</p>';
-                    echo '</li>';
+                // Check if services data is not empty before looping through and displaying
+                if (!empty($services)) {
+                    foreach ($services as $service) {
+                        echo '<li>';
+                        echo '<h4>' . $service['service_name'] . '</h4>';
+                        echo '<p>Description: ' . $service['service_description'] . '</p>';
+                        echo '</li>';
+                    }
+                } else {
+                    echo '<li>No services available.</li>';
                 }
                 ?>
             </ul>

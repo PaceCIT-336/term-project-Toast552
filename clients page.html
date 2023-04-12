@@ -1,17 +1,8 @@
-<?php
-// Include the necessary PHP files for database connection and functions
-include_once 'config.php'; // File containing database connection settings
-include_once 'functions.php'; // File containing functions for retrieving data from the database
-
-// Retrieve clients data from the database
-$clients = getClients();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>GG Holdings Group - Clients</title>
-    <!-- Add any necessary CSS and JavaScript files here -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file -->
 </head>
 <body>
     <!-- Header section -->
@@ -34,16 +25,11 @@ $clients = getClients();
         <section>
             <h2>Our Clients</h2>
             <p>GG Holdings Group has had the privilege of serving a wide range of clients in various industries. Our clients include:</p>
-            <ul>
-                <?php
-                if ($clients) {
-                    foreach ($clients as $client) {
-                        echo '<li>' . $client['client_name'] . '</li>';
-                    }
-                } else {
-                    echo '<li>No clients found.</li>';
-                }
-                ?>
+            <ul class="clients-list">
+                <li>Client 1</li>
+                <li>Client 2</li>
+                <li>Client 3</li>
+                <!-- Add more clients as needed -->
             </ul>
         </section>
     </main>
