@@ -55,6 +55,7 @@ include_once 'functions.php'; // File containing functions for retrieving data f
     <!-- Footer section -->
     <footer>
         <p>Contact us: [Contact Information]</p>
+        <p>Visit our subsidiary: <a href="https://ggdatagroup.com" target="_blank">GG Data Group</a></p>
         <!-- Add any additional footer content as needed -->
     </footer>
 </body>

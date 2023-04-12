@@ -1,13 +1,19 @@
+<?php
+// Include the necessary PHP files for database connection and functions
+include_once 'config.php'; // File containing database connection settings
+include_once 'functions.php'; // File containing functions for retrieving data from the database
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GG Holdings Group</title>
+    <title>GG Holdings Group - Services</title>
     <!-- Add any necessary CSS and JavaScript files here -->
 </head>
 <body>
     <!-- Header section -->
     <header>
-        <h1>Welcome to GG Holdings Group</h1>
+        <h1>Our Services</h1>
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
@@ -23,15 +29,33 @@
     <!-- Main content section -->
     <main>
         <section>
-            <h2>Welcome to GG Holdings Group</h2>
-            <p>Here, we showcase our portfolio of successful projects and highlight our expertise in providing top-notch services to our clients.</p>
-            <!-- Add any additional content as needed -->
+            <h2>Our Services</h2>
+            <p>At GG Holdings Group, we offer a wide range of services to cater to our clients' diverse needs. Our services include:</p>
+            <ul>
+                <?php
+                // Retrieve services data from the database
+                $services = getServices();
+                
+                // Check if services data is not empty before looping through and displaying
+                if (!empty($services)) {
+                    foreach ($services as $service) {
+                        echo '<li>';
+                        echo '<h4>' . $service['service_name'] . '</h4>';
+                        echo '<p>Description: ' . $service['service_description'] . '</p>';
+                        echo '</li>';
+                    }
+                } else {
+                    echo '<li>No services available.</li>';
+                }
+                ?>
+            </ul>
         </section>
     </main>
     
     <!-- Footer section -->
     <footer>
         <p>Contact us: [Contact Information]</p>
+        <p>Visit our subsidiary: <a href="https://ggdatagroup.com" target="_blank">GG Data Group</a></p>
         <!-- Add any additional footer content as needed -->
     </footer>
 </body>
