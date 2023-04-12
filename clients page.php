@@ -35,7 +35,7 @@ include_once 'functions.php'; // File containing functions for retrieving data f
                 <?php
                 // Retrieve clients data from the database
                 $clients = getClients();
-                if ($clients) {
+                if (!empty($clients)) { // Check if clients data is not empty
                     foreach ($clients as $client) {
                         echo '<li>' . $client['client_name'] . '</li>';
                     }
