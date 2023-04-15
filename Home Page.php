@@ -18,6 +18,12 @@ $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch
 <head>
     <title>GG Holdings Group - Clients</title>
     <!-- Add any necessary CSS and JavaScript files here -->
+    <style>
+        body {
+            background-color: blue; /* Set the background color to blue */
+            cursor: url('cursor.png'), auto; /* Set custom cursor with cursor.png */
+        }
+    </style>
 </head>
 <body>
     <!-- Header section -->
@@ -76,6 +82,7 @@ $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch
     <footer>
         <p>Contact us: ggeltman@ggdatagroup.com </p>
         <!-- Add any additional footer content as needed -->
-    </footer>
-</body>
-</html>
+        <footer>
+    <p>Contact us: @ ggeltman@ggdatagroup.com | Phone: XXX-XXX-XXXX | Address: 1234 Main St, City, State, ZIP</p>
+    <ul class="social-media">
+        <li><a href="https://www.facebook.com/ggholdings" target="_blank"><i class="fab fa-facebook"></
