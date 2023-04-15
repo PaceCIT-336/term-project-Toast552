@@ -1,9 +1,16 @@
 <?php
-// Start session
-session_start();
-
 // Include database connection
 require_once 'db_connect.php';
+
+// Function to fetch market data from Coingecko API
+function fetchMarketData() {
+    // Replace with your preferred method of fetching data from Coingecko API
+    // Example usage of a free cryptocurrency data API (coingecko.com)
+    $url = "https://api.coingecko.com/api/v3/coins/your_coin_id";
+    $response = file_get_contents($url);
+    $data = json_decode($response, true);
+    return $data;
+}
 
 // Function to log events
 function logEvent($event) {
@@ -75,23 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $_SESSION['last_event_time'] = $currentTime;
 
-    // Check if user is banned
-    $isBanned = $_SESSION['is_banned'] ?? false;
-    if ($isBanned) {
-        // Redirect user to a banned page
-        header('Location: banned.php');
-        exit;
-    }
-}
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Client Registration</title>
-</head>
-<body>
-    <h1>Client Registration</h1>
-    <?php if (isset($_SESSION['error'])): ?>
-        <p style="color: red"><?php echo $_SESSION['error']; ?></p>
-        <?
+    // Fetch market data
+    $marketData = fetchMarketData();
+    // Extract relevant data from the fetched
