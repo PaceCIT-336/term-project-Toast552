@@ -30,6 +30,7 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    cursor: pointer; /* Add cursor tracking */
 }
 
 /* Style main content section */
@@ -69,3 +70,4 @@ footer {
     padding: 20px;
     text-align: center;
 }
+
