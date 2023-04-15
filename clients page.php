@@ -53,11 +53,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert client data into database
     $stmt = $pdo->prepare("INSERT INTO clients (client_name, client_email) VALUES (?, ?)");
-    $stmt->execute([$clientName, $clientEmail]);
-    $_SESSION['success'] = 'Client data has been added successfully.';
-    logEvent('Client data added');
-    header('Location: index.php');
-    exit;
+    if ($stmt->execute([$clientName, $clientEmail])) {
+        $_SESSION['success'] = 'Client data has been added successfully.';
+        logEvent('Client data added');
+        header('Location: index.php');
+        exit;
+    } else {
+        $_SESSION['error'] = 'Failed to insert client data into database.';
+        logEvent('Failed to insert client data into database');
+        header('Location: index.php');
+        exit;
+    }
+} else {
+    // Check if session has expired
+    $lastEventTime = $_SESSION['last_event_time'] ?? 0;
+    $currentTime = time();
+    $timeElapsed = $currentTime - $lastEventTime;
+    if ($timeElapsed > 300) { // 300 seconds (5 minutes) threshold
+        session_unset();
+        session_destroy();
+    }
+    $_SESSION['last_event_time'] = $currentTime;
+
+    // Check if user is banned
+    $isBanned = $_SESSION['is_banned'] ?? false;
+    if ($isBanned) {
+        // Redirect user to a banned page
+        header('Location: banned.php');
+        exit;
+    }
 }
 ?>
 
@@ -69,21 +93,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h1>Client Registration</h1>
     <?php if (isset($_SESSION['error'])): ?>
-        <p style="color: red;"><?php echo $_SESSION['error']; ?></p>
-        <?php unset($_SESSION['error']); ?>
-    <?php endif; ?>
-    <?php if (isset($_SESSION['success'])): ?>
-        <p style="color: green;"><?php echo $_SESSION['success']; ?></p>
-        <?php unset($_SESSION['success']); ?>
-    <?php endif; ?>
-    <form method="post" action="">
-        <label for="client_name">Client Name:</label>
-        <input type="text" id="client_name" name="client_name" required>
-        <br>
-        <label for="client_email">Client Email:</label>
-        <input type="email" id="client_email" name="client_email" required>
-        <br>
-        <input type="submit" value="Register">
-    </form>
-</body>
-</html>
+        <p style="color: red"><?php echo $_SESSION['error']; ?></p>
+        <?
