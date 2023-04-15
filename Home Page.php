@@ -1,7 +1,7 @@
 <?php
 // Include the necessary PHP files for database connection and functions
-include_once 'config.php'; // File containing database connection settings
-include_once 'functions.php'; // File containing functions for retrieving data from the database
+require_once 'config.php'; // File containing database connection settings
+require_once 'functions.php'; // File containing functions for retrieving data from the database
 
 // Retrieve clients data from the database
 $clients = getClients();
@@ -20,7 +20,7 @@ $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch
     <!-- Add any necessary CSS and JavaScript files here -->
     <style>
         body {
-            background-color: blue; /* Set the background color to blue */
+            background-color: navy; /* Set the background color to navy blue */
             cursor: url('cursor.png'), auto; /* Set custom cursor with cursor.png */
         }
     </style>
@@ -47,8 +47,7 @@ $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch
             <h2>Our Clients</h2>
             <p>GG Holdings Group has had the privilege of serving a wide range of clients in various industries. Our clients include:</p>
             <ul>
-                <?php
-                if ($clients) {
+                <?php if (!empty($clients)) { // Use empty() function to check if $clients is not empty
                     foreach ($clients as $client) {
                         echo '<li>' . $client['client_name'] . '</li>';
                     }
@@ -68,11 +67,63 @@ $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch
                 </tr>
                 <?php
                 foreach ($topCryptos as $crypto) {
-                    echo '<tr>';
-                    echo '<td>' . $crypto . '</td>';
-                    echo '<td>' . $cryptos[$crypto] . '</td>';
-                    echo '</tr>';
+                    if (isset($cryptos[$crypto])) { // Use isset() function to check if $cryptos[$crypto] is set
+                        echo '<tr>';
+                        echo '<td>' . $crypto . '</td>';
+                        echo '<td>' . $cryptos[$crypto] . '</td>';
+                        echo '</tr>';
+                    }
                 }
+                <section>
+    <h2>Cryptocurrency Prices</h2>
+    <table>
+        <tr>
+            <th>Cryptocurrency</th>
+            <th>Price (USD)</th>
+            <th>US Market Data</th>
+        </tr>
+        <?php
+        foreach ($topCryptosWithUSMarket as $crypto) {
+            echo '<tr>';
+            echo '<td>' . $crypto . '</td>';
+            echo '<td>' . $cryptos[$crypto] . '</td>';
+            // Fetch and display US market data for the cryptocurrency
+            $usMarketData = fetchUSMarketData($usMarketUrl, $crypto); // Function to fetch US market data from the API
+            echo '<td>' . $usMarketData . '</td>';
+            echo '</tr>';
+        }
+        ?>
+    </table>
+</section>
+
+<section>
+    <h2>US Market Data</h2>
+    <div class="us-market-box">
+        <h3>QQQ</h3>
+        <?php
+        // Fetch and display QQQ data
+        $qqqData = fetchUSMarketData($usMarketUrl, 'QQQ'); // Function to fetch US market data for QQQ from the API
+        echo '<p>' . $qqqData . '</p>';
+        ?>
+    </div>
+    <div class="us-market-box">
+        <h3>SPY</h3>
+        <?php
+        // Fetch and display SPY data
+        $spyData = fetchUSMarketData($usMarketUrl, 'SPY'); // Function to fetch US market data for SPY from the API
+        echo '<p>' . $spyData . '</p>';
+        ?>
+    </div>
+    <div class="us-market-box">
+        <h3>IWM</h3>
+        <?php
+        // Fetch and display IWM data
+        $iwmData = fetchUSMarketData($usMarketUrl, 'IWM'); // Function to fetch US market data for IWM from the API
+        echo '<p>' . $iwmData . '</p>';
+        ?>
+    </div>
+</section>
+
                 ?>
             </table>
         </section>
@@ -82,7 +133,5 @@ $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch
     <footer>
         <p>Contact us: ggeltman@ggdatagroup.com </p>
         <!-- Add any additional footer content as needed -->
-        <footer>
-    <p>Contact us: @ ggeltman@ggdatagroup.com | Phone: XXX-XXX-XXXX | Address: 1234 Main St, City, State, ZIP</p>
-    <ul class="social-media">
-        <li><a href="https://www.facebook.com/ggholdings" target="_blank"><i class="fab fa-facebook"></
+        <ul class="social-media">
+            <li><a href="https://www.facebook.com/ggholdings" target="_blank"><i class="fab fa-facebook"></i></a
