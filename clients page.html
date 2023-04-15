@@ -3,6 +3,23 @@
 <head>
     <title>GG Holdings Group - Clients</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file -->
+    <style>
+        /* Add custom CSS for cursor tracker */
+        .cursor-tracker {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-tracker div {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #000;
+            opacity: 0.5;
+            mix-blend-mode: difference;
+        }
+    </style>
 </head>
 <body>
     <!-- Header section -->
@@ -26,9 +43,13 @@
             <h2>Our Clients</h2>
             <p>GG Holdings Group has had the privilege of serving a wide range of clients in the US, Canada and China, we primarily focus with US Clients:</p>
             <ul class="clients-list">
-                <li>Client 1</li>
-                <li>Client 2</li>
-                <li>Client 3</li>
+                <?php
+                    // PHP code to dynamically generate client names
+                    $clients = array("Client 1", "Client 2", "Client 3");
+                    foreach ($clients as $client) {
+                        echo "<li>$client</li>";
+                    }
+                ?>
                 <!-- Add more clients as needed -->
             </ul>
         </section>
@@ -39,5 +60,13 @@
         <p>Contact us: [Contact Information]</p>
         <!-- Add any additional footer content as needed -->
     </footer>
+    
+    <!-- Cursor Tracker -->
+    <div class="cursor-tracker">
+        <div></div>
+    </div>
+    
+    <!-- Add any necessary JavaScript files here -->
+    <script src="script.js"></script> <!-- Link to external JavaScript file -->
 </body>
 </html>
