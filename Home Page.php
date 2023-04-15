@@ -123,6 +123,7 @@ $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch
         ?>
     </div>
 </section>
+<p> OUR LOGISTICS WEBSITE: https://www.GGDataGroup.com 
 
                 ?>
             </table>
