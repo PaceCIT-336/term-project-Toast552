@@ -90,3 +90,21 @@ body {
     text-decoration: underline;
     color: #c71585;
 }
+.data-container {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.data-container > * {
+    display: inline-block;
+    padding-right: 20px;
+    animation: move-data 30s linear infinite;
+}
+
+@keyframes move-data {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+
