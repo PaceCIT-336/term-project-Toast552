@@ -19,7 +19,7 @@ include_once 'functions.php'; // File containing functions for retrieving data f
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About Us</a></li>
                 <li><a href="services.php">Services</a></li>
-                <li><a href="clients.php">Clients</a></li>
+                <li><a href="clients_page.php">Clients</a></li>
                 <li><a href="projects.php">Projects</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
             </ul>
@@ -30,7 +30,7 @@ include_once 'functions.php'; // File containing functions for retrieving data f
     <main>
         <section>
             <h2>Our Services</h2>
-            <p>At GG Holdings Group, we offer a wide range of services to cater to our clients' diverse needs. Our services include:</p>
+            <p>At GG Holdings Group, we offer a wide range of services to cater to our clients' diverse needs. Our services include: Cryptography consultation, Backend development; Private Equity investment and extensive knowledge in both sectors of finance. Here at G&G Holdings our portfolio is robust and we are ever expanding in other business segments.</p>
             <ul>
                 <?php
                 // Retrieve services data from the database
@@ -54,7 +54,7 @@ include_once 'functions.php'; // File containing functions for retrieving data f
     
     <!-- Footer section -->
     <footer>
-        <p>Contact us: [Contact Information]</p>
+        <p>Contact us: GGELTMAN@GGDATAGROUP.COM</p>
         <p>Visit our subsidiary: <a href="https://ggdatagroup.com" target="_blank">GG Data Group</a></p>
         <!-- Add any additional footer content as needed -->
     </footer>

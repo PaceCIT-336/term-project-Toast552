@@ -71,12 +71,12 @@ projects.php
         Please note that some of the statements on this project page, including those related to equity share investments and bitcoin mining operations, may be considered forward-looking statements. These statements are based on our current expectations and projections and are subject to various risks and uncertainties that could cause actual results to differ materially from those anticipated in such statements. Factors that could cause actual results to differ materially include changes in market conditions, regulatory requirements, technological advancements, and other factors beyond our control. GGHoldings does not undertake any obligation to update forward-looking statements to reflect events or circumstances after the date of this project page.
     </p>
     <p>
-        Thank you for visiting our Project Page! For more information about GGHoldings, please feel free to contact us.
+        Thank you for visiting our Project Page! For more information about GGHoldings, please feel free to contact us with your inquiry.
     </p>
     <div class="disclaimer">
         <p>
             Cryptocurrency prices are fetched from Coingecko API and are for informational purposes only. Please note that cryptocurrency prices are highly volatile and may change rapidly. Always do your own research and consider professional advice before making investment decisions.
-        </p>
+        </p> 
     </div>
 </body>
 </

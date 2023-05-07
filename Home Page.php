@@ -41,11 +41,23 @@ if (empty($marketData)) {
     echo '<p>Market data is not available at the moment. Please try again later.</p>';
 }
 
+// Fetch geo data for the user accessing the website
+$geoData = fetchGeoData();
+
+// Welcome message
+$welcome = '';
+if (!empty($geoData['city'])) {
+    $welcome = 'Welcome from ' . $geoData['city'] . ', ' . $geoData['region'] . ', ' . $geoData['country'] . '!';
+} else {
+    $welcome = 'Welcome to GG Holdings Group!';
+}
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GG Holdings Group - Clients</title>
+    <title>GG Holdings Group - Home</title>
     <!-- Add any necessary CSS and JavaScript files here -->
     <style>
         body {
@@ -57,58 +69,13 @@ if (empty($marketData)) {
 <body>
     <!-- Header section -->
     <header>
-        <h1>Clients</h1>
+        <h1><?= $welcome ?></h1>
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="services.php">Services</a></li>
-                <li><a href="clients.php">Clients</a></li>
+                <li><a href="about_us.php">About Us</a></li>
+                <li><a href="services_page.php">Services</a></li>
+                <li><a href="clients_page.php">Clients</a></li>
                 <li><a href="projects.php">Projects</a></li>
-                <li><a href="contact.php">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
-    <!-- Main content section -->
-<main>
-    <section>
-        <h2>Our Clients</h2>
-        <p>GG Holdings Group has had the privilege of serving a wide range of small to midsize companies in various industries. Our clients include businesses in tech, finance, retail, healthcare, and more. We are proud to have earned their trust and to have played a role in their growth and success.</p>
-        <ul>
-            <?php if (!empty($clients)) { // Use empty() function
-<div class="data-container">
-<?php foreach ($clients as $client): ?>
-    <div><?= $client['name'] ?> - <?= $client['industry'] ?></div>
-<?php endforeach; ?>
-</div>
-
-// Include the GeoIP2 PHP API
-require_once 'vendor/autoload.php';
-
-use GeoIp2\Database\Reader;
-
-// Function to fetch geo data for the user accessing the website
-function fetchGeoData() {
-    // Initialize the GeoIP2 database reader with the path to the GeoLite2-City.mmdb file
-    $reader = new Reader('path/to/GeoLite2-City.mmdb');
-
-    // Get the IP address of the user accessing the website
-    $ipAddress = $_SERVER['REMOTE_ADDR'];
-
-    // Fetch the geo data for the user's IP address
-    try {
-        $record = $reader->city($ipAddress);
-    } catch (\Exception $e) {
-        // If an error occurs, return false
-        return false;
-    }
-
-    // Return the geo data as an array
-    return array(
-        'country' => $record->country->name,
-        'region' => $record->mostSpecificSubdivision->name,
-        'city' => $record->city->name,
-        'latitude' => $record->location->latitude,
-        'longitude' => $record->location->longitude,
-    );
-}
+                <li><a href="coinfig.php"><footer></footer> 
+<!-- #endregion -->

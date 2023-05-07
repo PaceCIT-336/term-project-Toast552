@@ -16,7 +16,6 @@ $geolocation_data = json_decode(file_get_contents("http://ip-api.com/json/$ip_ad
 $current_timestamp = time();
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,15 +59,14 @@ $current_timestamp = time();
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="services.php">Services</a></li>
-                <li><a href="clients.php">Clients</a></li>
+                <li><a href="about_us.php">About Us</a></li>
+                <li><a href="services_page.php">Services</a></li>
+                <li><a href="clients_page.php">Clients</a></li>
                 <li><a href="projects.php">Projects</a></li>
-                <li><a href="contact.php">Contact Us</a></li>
+                <li><a href="contact_us.php">Contact Us</a></li>
             </ul>
         </nav>
     </header>
-    
     <!-- Main content section -->
     <main>
         <section>
@@ -78,9 +76,11 @@ $current_timestamp = time();
                 <?php
                 // Retrieve services data from the database
                 $services = getServices();
-                
+
                 // Check if services data is not empty before looping through and displaying
                 if (!empty($services)) {
                     foreach ($services as $service) {
                         echo '<li>';
                         echo '<h4>' . htmlspecialchars($service['service_name']) . '</h4>'; // Use htmlspecialchars to prevent XSS
+                        echo '<p>' . htmlspecialchars($service['service_description']) . '</p>';
+                        echo '</li>';

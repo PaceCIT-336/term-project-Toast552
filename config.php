@@ -2,7 +2,7 @@ config.php
 <?php
 // Embed cookie data
 $cookie_name = "user";
-$cookie_value = "John Doe";
+$cookie_value = "RUSSELL BILL";
 $cookie_expire = time() + (86400 * 30); // 30 days from now
 setcookie($cookie_name, $cookie_value, $cookie_expire, "/"); // "/" means cookie is available to the entire domain
 
