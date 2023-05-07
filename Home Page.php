@@ -25,7 +25,7 @@ $bitcoinMining = $inputData['bitcoin_mining'] ?? '';
 
 // Fetch spot prices of BTC, ETH, LTC, and top 10 cryptocurrencies from Yahoo Finance API
 $apiUrl = 'https://query1.finance.yahoo.com/v7/finance/quote'; // Yahoo Finance API URL
-$cryptoList = array('BTC-USD', 'ETH-USD', 'LTC-USD'); // List of cryptocurrencies to fetch
+$cryptoList = ['BTC-USD', 'ETH-USD', 'LTC-USD']; // List of cryptocurrencies to fetch
 $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch cryptocurrency prices from the API
 
 if ($cryptos === false) { // Check if there was an error fetching the cryptocurrency prices
@@ -55,10 +55,10 @@ if ($marketData === false) { // Check if there was an error fetching the market 
         echo '<p>Error fetching market data from the API or backup source. Please try again later.</p>';
     }
 }
-<?php
+
+// Welcome message
 $welcome = "Welcome to GG Holdings Group!";
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
