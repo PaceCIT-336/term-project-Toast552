@@ -77,6 +77,4 @@ projects.php
         <p>
             Cryptocurrency prices are fetched from Coingecko API and are for informational purposes only. Please note that cryptocurrency prices are highly volatile and may change rapidly. Always do your own research and consider professional advice before making investment decisions.
         </p> 
-    </div>
-</body>
-</
+    </div

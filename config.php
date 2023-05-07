@@ -1,4 +1,3 @@
-config.php
 <?php
 // Embed cookie data
 $cookie_name = "user";
@@ -20,4 +19,16 @@ function handle_error($error_message) {
     die("Oops! Something went wrong. Please try again later."); // Display generic error message to user
 }
 
+// Sanitize input data
+/**
+ * Summary of sanitize_input
+ * @param mixed $data
+ * @return string
+ */
+function sanitize_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>

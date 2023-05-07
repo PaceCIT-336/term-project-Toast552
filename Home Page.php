@@ -1,10 +1,27 @@
 <?php
-// Include the necessary PHP files for database connection and functions
-require_once 'config.php'; // File containing database connection settings
-require_once 'functions.php'; // File containing functions for retrieving data from the database
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Retrieve clients data from the database
-$clients = getClients();
+// Check if user is logged in or in guest mode
+$isLoggedIn = false; // Replace with actual code to check if user is logged in
+$isGuest = true; // Replace with actual code to check if user is in guest mode
+
+// Only allow access to website if user is logged in or in guest mode
+if (!$isLoggedIn && !$isGuest) {
+    // Redirect user to login page
+    header('Location: login.php');
+    exit;
+}
+
+// Get current timestamp
+$timestamp = date('Y-m-d H:i:s');
+
+// Validate and sanitize input data
+$inputData = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+$missionStatement = $inputData['mission_statement'] ?? '';
+$equityInvestments = $inputData['equity_investments'] ?? '';
+$bitcoinMining = $inputData['bitcoin_mining'] ?? '';
 
 // Fetch spot prices of BTC, ETH, LTC, and top 10 cryptocurrencies from Yahoo Finance API
 $apiUrl = 'https://query1.finance.yahoo.com/v7/finance/quote'; // Yahoo Finance API URL
@@ -12,7 +29,12 @@ $cryptoList = array('BTC-USD', 'ETH-USD', 'LTC-USD'); // List of cryptocurrencie
 $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList); // Function to fetch cryptocurrency prices from the API
 
 if ($cryptos === false) { // Check if there was an error fetching the cryptocurrency prices
-    echo '<p>Error fetching cryptocurrency prices from the API. Please try again later.</p>';
+    // Try fetching from Barron's website as a backup
+    $apiUrl = 'https://www.barrons.com/mdc/public/page/9_3020-cryptocurrency.html';
+    $cryptos = fetchCryptocurrencyPrices($apiUrl, $cryptoList);
+    if ($cryptos === false) {
+        echo '<p>Error fetching cryptocurrency prices from the API or backup source. Please try again later.</p>';
+    }
 }
 
 // Fetch market data for the top cryptocurrencies from Yahoo Finance API
@@ -26,31 +48,15 @@ $params = array(
 $marketData = fetchMarketData($yahooURL, $params); // Function to fetch market data from Yahoo Finance API
 
 if ($marketData === false) { // Check if there was an error fetching the market data
-    echo '<p>Error fetching market data from the API. Please try again later.</p>';
-}
-
-// Sanitize market data
-foreach ($marketData as &$marketDatum) {
-    foreach ($marketDatum as &$datum) {
-        $datum = filter_var($datum, FILTER_SANITIZE_STRING);
+    // Try fetching from CNN's business section as a backup
+    $apiUrl = 'https://www.cnn.com/business';
+    $marketData = fetchMarketData($apiUrl, $params);
+    if ($marketData === false) {
+        echo '<p>Error fetching market data from the API or backup source. Please try again later.</p>';
     }
 }
-
-// Display error message if market data is not available
-if (empty($marketData)) {
-    echo '<p>Market data is not available at the moment. Please try again later.</p>';
-}
-
-// Fetch geo data for the user accessing the website
-$geoData = fetchGeoData();
-
-// Welcome message
-$welcome = '';
-if (!empty($geoData['city'])) {
-    $welcome = 'Welcome from ' . $geoData['city'] . ', ' . $geoData['region'] . ', ' . $geoData['country'] . '!';
-} else {
-    $welcome = 'Welcome to GG Holdings Group!';
-}
+<?php
+$welcome = "Welcome to GG Holdings Group!";
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +68,42 @@ if (!empty($geoData['city'])) {
         body {
             background-color: navy; /* Set the background color to navy blue */
             cursor: url('cursor.png'), auto; /* Set custom cursor with cursor.png */
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: navy;
+        }
+        h2 {
+            margin-top: 2rem;
+            color: navy;
+        }
+        ul {
+            margin-top: 1rem;
+            list-style: disc;
+            color: #333;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        li strong {
+            color: navy;
         }
     </style>
 </head>
@@ -76,4 +118,20 @@ if (!empty($geoData['city'])) {
                 <li><a href="services_page.php">Services</a></li>
                 <li><a href="clients_page.php">Clients</a></li>
                 <li><a href="projects.php">Projects</a></li>
-           
+            </ul>
+        </nav>
+    </header>
+    <!-- Main section -->
+    <main>
+        <h2>Why Choose Us!?</h2>
+        <ul>
+            <li><strong>Strong focus on security:</strong> As a private equity firm, security is a top priority in all aspects of our operations. We implement advanced security measures to safeguard our investments, client data, and intellectual property.</li>
+            <li><strong>Proven track record:</strong> With a history of successful acquisitions and private equity investments, we have a proven track record of delivering exceptional results for our investors.</li>
+            <li><strong>Industry expertise:</strong> Our team brings deep industry expertise across various sectors, allowing us to identify and capitalize on lucrative investment opportunities.</li>
+            <li><strong>Innovative investment solutions:</strong> We are constantly exploring innovative investment strategies to deliver superior returns for our investors while mitigating risks through careful risk management practices.</li>
+            <li><strong>Robust cybersecurity measures:</strong> We have implemented robust cybersecurity measures, including firewalls, intrusion detection systems, regular security audits, and encryption protocols, to protect our systems and data from unauthorized access and cyber threats.</li>
+            <li><strong>Multi-factor authentication:</strong> We use multi-factor authentication (MFA) for all our user accounts and access points.</li>
+        </ul>
+    </main>
+</body>
+</html>

@@ -85,3 +85,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Fetch market data
     $marketData = fetchMarketData();
     // Extract relevant data from the fetched
+} 
