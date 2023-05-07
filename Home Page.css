@@ -1,5 +1,3 @@
-Home Page.css
-
 /* Reset default styles for the body and lists */
 body, ul {
     margin: 0;
@@ -17,15 +15,9 @@ body {
 .homepage {
     background-color: #000080; /* Update background color to navy blue */
     height: 100vh;
-}
-
-/* Center align the homepage content */
-.homepage .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    display: flex; /* Add flex display to enable vertical centering */
+    justify-content: center; /* Center align the content horizontally */
+    align-items: center; /* Center align the content vertically */
 }
 
 /* Style the homepage title */
@@ -33,7 +25,7 @@ body {
     font-size: 60px;
     margin-bottom: 16px;
     text-align: center;
-    color: #000; /* Update title text color to black */
+    color: #fff; /* Update title text color to white for contrast */
     text-shadow: none; /* Remove text shadow */
 }
 
@@ -43,7 +35,7 @@ body {
     margin-bottom: 24px;
     text-align: center;
     max-width: 800px;
-    color: #000; /* Update description text color to black */
+    color: #fff; /* Update description text color to white for contrast */
     text-shadow: none; /* Remove text shadow */
 }
 
@@ -90,6 +82,8 @@ body {
     text-decoration: underline;
     color: #c71585;
 }
+
+/* Add animation to move the data vertically */
 .data-container {
     width: 100%;
     white-space: nowrap;
@@ -100,11 +94,16 @@ body {
     display: inline-block;
     padding-right: 20px;
     animation: move-data 30s linear infinite;
+    animation-direction: alternate; /* Make the animation move back and forth */
+    transform-origin: center; /* Set the origin to the center for the back and forth animation */
 }
 
 @keyframes move-data {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
 }
 
-
+    
+    
+    
+    

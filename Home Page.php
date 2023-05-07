@@ -51,7 +51,6 @@ if (!empty($geoData['city'])) {
 } else {
     $welcome = 'Welcome to GG Holdings Group!';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -77,5 +76,4 @@ if (!empty($geoData['city'])) {
                 <li><a href="services_page.php">Services</a></li>
                 <li><a href="clients_page.php">Clients</a></li>
                 <li><a href="projects.php">Projects</a></li>
-                <li><a href="coinfig.php"><footer></footer> 
-<!-- #endregion -->
+           
